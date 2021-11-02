@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/crearCasa.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/house.jpg' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="ulNav">
+            <li class="liNav"><a href="{% url 'app:home'%}">Inicio</a></li>
+            <li class="liNav"><a href="{% url 'app:crearCasa' %}">Añadir casa</a></li>
+            <li class="liNav"><a href="{% url 'app:logout' %}">Cerrar sesión</a></li>
+        </ul>
+    </div>
+
+    <div class="contenedor">
+        <form action="" method="POST" enctype="multipart/form-data" class="formCasa">
+            {% csrf_token %}
+            <div class="divFormRegistroCasa">
+                {{formCasa.titulo}}
+                <label>Titulo</label>
+            </div>
+            <div class="divFormRegistroCasaArea">
+                <label>Descripcion</label> {{formCasa.descripcion}}
+            </div>
+            <div class="divFormRegistroCasa">
+                <label>Imagen principal</label> {{formCasa.imagen}}
+            </div>
+            <div class="divFormRegistroCasa">
+                <label>Imagenes secundarias</label> {{formGaleriaCasa.imagenGaleria}}
+            </div>
+            <input type="submit" value="Enviar" class="btnEnvFormRegistroCasa">
+        </form>
+    </div>
+    <script src="{% static 'js/AnimacionInput.js' %}"></script>
+</body>
+
+</html>

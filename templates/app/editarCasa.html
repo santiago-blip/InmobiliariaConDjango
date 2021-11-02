@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/house.jpg' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/editarCasa.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Editar</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="ulNav">
+            <li class="liNav"><a href="{% url 'app:home'%}">Inicio</a></li>
+            {% if user.is_authenticated %}
+            <li class="liNav"><a href="{% url 'app:crearCasa' %}">Añadir casa</a></li>
+            <li class="liNav"><a href="{% url 'app:logout' %}">Cerrar sesión</a></li>
+            {% else %}
+            <li class="liNav"><a id="log" href="{% url 'app:home' %}">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="contenedor">
+        <div class="divInfoPrincipal">
+            <div class="divInfoImg">
+                <i class="fas fa-pen-square i" id="AbrirModalImg"></i>
+                <img src="{{casa.imagen.url}}" alt="">
+            </div>
+            <div class="divInfoDesc">
+                <i class="fas fa-pen-square i" id="AbrirModalEditInfo"></i>
+                <p>{{casa.titulo}}</p>
+                <p>{{casa.descripcion}}</p>
+                <p>Publicante: {{casa.idUsuario.nombre}} {{casa.idUsuario.apellido}}</p>
+                <p>Información de contacto: {{casa.idUsuario.numeroCelular}}</p>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="divGaleriaImg">
+            {% for i in galeria %}
+            <div class="divCartaGaleria">
+                <div class="divCartaGaleriaContenedorImg">
+                    <div class="divImgDeContenedor">
+                        <img src="{{i.imagenGaleria.url}}" alt="">
+                    </div>
+                    <div class="divContainerFormGaleriaEdit">
+                        <div class="divConElFormularioPARAcambiodeGaleria" id="divConElFormularioPARAcambiodeGaleria">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{i.id}}" name="id"> {{form.imagenGaleria}}
+                                <input type="submit" value="Enviar" class="btnEnviarGaleriaImagen">
+                            </form>
+                        </div>
+                        <a class="btnEdit">Cambiar imagen </a>
+                    </div>
+                    <a href="{% url 'app:eliminarGaleria' i.id %}" class="btnDelete">Eliminar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="contenedorModalesEdit" id="contenedorModalesEdit">
+        <div class="modalFormEditDatos" id="modalFormEditDatos">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{casa.id}}" name="idUsuarioData">
+                <div class="divFormEditDatos">
+                    {{formDatos.nombre}}
+                    <label for="" class="lblEditCasa">Nombre</label>
+                </div>
+                <div class="divFormEditDatos">
+                    {{formDatos.apellido}}
+                    <label for="" class="lblEditCasa">Apellido</label>
+                </div>
+                <div class="divFormEditDatos">
+                    {{formDatos.numeroCelular}}
+                    <label for="" class="lblEditCasa">Número de contacto</label>
+                </div>
+                <div class="divFormEditDatos">
+                    {{formDatos.titulo}}
+                    <label for="" class="lblEditCasa">Titulo</label>
+                </div>
+                <div class="divFormEditDatosT">
+                    <label for="" class="lblEditCasaT">Descripción</label> {{formDatos.descripcion}}
+                </div>
+                <input type="submit" value="Enviar" class="btnSubFormData">
+            </form>
+        </div>
+        <div class="modalFormEditImg" id="modalFormEditImg">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{casa.id}}" name="idCasa"> {{formCasa.imagen}}
+                <input type="submit" value="Enviar" class="btnEnviarInfoImg">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var inpunttest = document.getElementById("InputNombre").value = "{{casa.idUsuario.nombre}}";
+        var inpunttest = document.getElementById("InputApellido").value = "{{casa.idUsuario.apellido}}";
+        var inpunttest = document.getElementById("InputNumero").value = "{{casa.idUsuario.numeroCelular}}";
+        var inpunttest = document.getElementById("InputTitulo").value = "{{casa.titulo}}";
+        var inpunttest = document.getElementById("InputDesc").value = "{{casa.descripcion}}";
+    </script>
+    <script src="{% static 'js/VerEdit.js'%}"></script>
+    <script src="{% static 'js/modalEditCasa.js' %}"></script>
+</body>
+
+</html>

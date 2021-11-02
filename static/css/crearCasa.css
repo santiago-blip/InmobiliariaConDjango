@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 10px 10px #E7E5E5;
+}
+
+.ulNav {
+    width: 60%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.liNav {
+    position: relative;
+}
+
+.liNav::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #E7E5E5;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: transform .3s;
+}
+
+.liNav a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.liNav a:hover {
+    color: #E7E5E5;
+}
+
+.liNav:hover:after {
+    transform: translateX(0px);
+    visibility: visible;
+}
+
+
+/*FORMULARIO*/
+
+.fijar {
+    transform: translateY(-30px);
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formCasa {
+    box-shadow: 0px 0px 15px black;
+    margin-top: 200px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.divFormRegistroCasa {
+    position: relative;
+    margin-top: 25px;
+}
+
+.inputFormRegistroCasa {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.divFormRegistroCasa label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+.inputFormRegistroCasa:focus~label {
+    transform: translateY(-30px);
+}
+
+.divFormRegistroCasaArea {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.areaFormRegistroCasa {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.btnEnvFormRegistroCasa {
+    padding: 8px;
+    border: 1px solid black;
+    width: 50%;
+    background-color: #FFFFFF;
+    display: block;
+    margin: 25px auto 10px auto;
+}
+
+.btnEnvFormRegistroCasa:hover {
+    border-color: #d3d3d3;
+    color: #d3d3d3;
+    cursor: pointer;
+}

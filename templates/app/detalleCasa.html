@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detalleCasa.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/house.jpg' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Detalle</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="ulNav">
+            <li class="liNav"><a href="{% url 'app:home'%}">Inicio</a></li>
+            {% if user.is_authenticated %}
+            <li class="liNav"><a href="{% url 'app:crearCasa' %}">Añadir casa</a></li>
+            <li class="liNav"><a href="{% url 'app:logout' %}">Cerrar sesión</a></li>
+            {% else %}
+            <li class="liNav"><a id="log" href="{% url 'app:home' %}">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="contenedor">
+        <div class="divContenedorCarta">
+            <div class="divCartaIzquierda">
+                <div class="carruselCartaIzquierda">
+
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for i in galeria %} {% if forloop.counter == 1 %}
+                            <div class="carousel-item active divCarrusel">
+                                {% else %}
+                                <div class="carousel-item divCarrusel">
+                                    {%endif%}
+                                    <img src="{{ i.imagenGaleria.url }}" alt="" class="imgSlider">
+                                </div>
+                                {% endfor %}
+                                <button class="carousel-control-prev btnRound" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                                <button class="carousel-control-next btnRound" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="divdetallescartaizquierda">
+                        <div class="divTitleAndOptions">
+                            <div class="divtitleizq">
+                                <p>{{casa.titulo}}</p>
+                            </div>
+                            {% if request.user == casa.idUsuario %}
+                            <div class="divtitleDer">
+                                <a href="{% url 'app:editar' casa.id%}" class="btnEdit">Editar</a>
+                                <input type="hidden" value="{{casa.id}}" id="inputId">
+                                <button class="btnDelete" id="btnDelete">Eliminar</button>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <p>{{casa.descripcion}}</p>
+                    </div>
+                </div>
+                <div class="divCartaDerecha">
+                    <img src="{{casa.imagen.url}}" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+        <script src="{% static 'js/confirmacionDeleteCasa.js' %}"></script>
+</body>
+
+</html>

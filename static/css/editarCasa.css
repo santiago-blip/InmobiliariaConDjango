@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav {
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 10px 10px #E7E5E5;
+}
+
+.ulNav {
+    width: 60%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.liNav {
+    position: relative;
+}
+
+.liNav::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #E7E5E5;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: transform .3s;
+}
+
+.liNav a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.liNav a:hover {
+    color: #E7E5E5;
+}
+
+.liNav:hover:after {
+    transform: translateX(0px);
+    visibility: visible;
+}
+
+
+/*Diseño edit*/
+
+.contenedor {
+    box-shadow: 0px 0px 15px #a6f1db;
+    margin: 50px auto 0px auto;
+    width: 99%;
+}
+
+.divInfoPrincipal {
+    display: flex;
+}
+
+.divInfoImg {
+    width: 30%;
+    height: 300px;
+    padding: 5px;
+    position: relative;
+}
+
+.divInfoImg i {
+    font-size: 30px;
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    visibility: hidden;
+}
+
+.divInfoImg:hover i {
+    visibility: visible;
+}
+
+.divInfoImg img {
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.divInfoDesc {
+    width: 70%;
+    padding: 5px;
+    position: relative;
+}
+
+.divInfoDesc p {
+    margin: 10px 0px 0px 50px;
+}
+
+.divInfoDesc i {
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    visibility: hidden;
+}
+
+.i {
+    cursor: pointer;
+}
+
+.divInfoDesc:hover i {
+    visibility: visible;
+}
+
+.hr {
+    width: 98%;
+    margin: 40px auto 0px auto;
+    border: 1px solid gray;
+}
+
+.divGaleriaImg {
+    width: 100%;
+    margin: auto;
+}
+
+.divCartaGaleria {
+    width: 100%;
+    display: flex;
+}
+
+.divCartaGaleriaContenedorImg {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divImgDeContenedor {
+    height: 400px;
+    width: 50%;
+    margin: 10px;
+}
+
+.divImgDeContenedor img {
+    width: 100%;
+    height: 100%;
+}
+
+.divCartaGaleriaContenedorBTNS {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid red;
+}
+
+.btnDelete {
+    text-decoration: none;
+    margin-left: 150px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    border-radius: 5px;
+}
+
+.btnDelete:hover {
+    color: white;
+    background-color: red;
+}
+
+.btnEdit {
+    text-decoration: none;
+    margin-left: 150px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid rgb(0, 174, 255);
+    color: rgb(0, 174, 255);
+    border-radius: 5px;
+}
+
+.btnEdit:hover {
+    color: white;
+    background-color: rgb(0, 174, 255);
+    cursor: pointer;
+}
+
+.divContainerFormGaleriaEdit {
+    position: relative;
+}
+
+.divConElFormularioPARAcambiodeGaleria {
+    box-shadow: 0px 0px 15px rgb(145, 220, 255);
+    height: 100px;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    visibility: visible;
+}
+
+.divConElFormularioPARAcambiodeGaleria form {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.divConElFormularioPARAcambiodeGaleria form input {
+    display: block;
+    margin: 15px auto 0px auto;
+}
+
+.verEditImg {
+    visibility: visible;
+}
+
+.btnEnviarGaleriaImagen {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #20b8ff;
+    color: #31beff;
+    border-radius: 5px;
+}
+
+.btnEnviarGaleriaImagen:hover {
+    background-color: #20b8ff;
+    color: white;
+    cursor: pointer;
+}
+
+
+/*MODALES*/
+
+.contenedorModalesEdit {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.modalFormEditDatos {
+    background-color: white;
+    width: 30%;
+    box-shadow: 0px 0px 15px rgb(145, 220, 255);
+    transition: transform 0.3s;
+    transform: translateY(-50px);
+    position: absolute;
+    visibility: hidden;
+}
+
+.divFormEditDatos {
+    position: relative;
+    width: 80%;
+    margin: 40px auto 0px auto;
+}
+
+.inputFormEditDatos {
+    font-size: 20px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.lblEditCasa {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    transform: translateY(-35px);
+}
+
+.divFormEditDatosT {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 30px auto 0px auto;
+}
+
+.textareaT {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.lblEditCasaT {
+    margin: 10px 0px 10px 0px;
+}
+
+.btnSubFormData {
+    margin: 20px auto 20px auto;
+    display: block;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.btnSubFormData:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.mostrarContenedor {
+    visibility: visible;
+}
+
+.modalFormEditImg {
+    box-shadow: 0px 0px 15px rgb(145, 220, 255);
+    background-color: white;
+    height: 100px;
+    position: absolute;
+    top: 300px;
+    left: 620px;
+    transition: transform 0.3s;
+    transform: translateY(-50px);
+    visibility: hidden;
+}
+
+.modalFormEditImg form {
+    padding: 5px;
+}
+
+.modalFormEditImg form input {
+    display: block;
+    margin: 15px auto 0px auto;
+}
+
+.btnEnviarInfoImg {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #20b8ff;
+    color: #31beff;
+    border-radius: 5px;
+}
+
+.btnEnviarInfoImg:hover {
+    background-color: #20b8ff;
+    color: white;
+    cursor: pointer;
+}
+
+.modalVisible {
+    visibility: visible;
+    transform: translateY(0);
+}
